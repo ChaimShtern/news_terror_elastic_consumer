@@ -20,7 +20,16 @@ def elastic_search_index(es_client, index_name):
             "settings": {
                 "number_of_shards": 2,
                 "number_of_replicas": 2
+            },
+            "mappings": {
+                "properties": {
+                    "city": {"type": "text"},
+                    "country": {"type": "text"},
+                    "region": {"type": "text"},
+                    "date": {"type": "text"},
+                    "title": {"type": "text"},
+                    "new": {"type": "boolean"}
+                }
             }
         })
     return index_name
-

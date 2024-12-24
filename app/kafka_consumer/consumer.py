@@ -2,6 +2,12 @@ import json
 import os
 from ensurepip import bootstrap
 from kafka import KafkaConsumer
+from dotenv import load_dotenv
+
+from app.services.map_data import map_to_elastic_format
+
+load_dotenv(verbose=True)
+
 
 
 def consume(mode='latest'):
@@ -13,4 +19,4 @@ def consume(mode='latest'):
     )
 
     for message in consumer:
-        split_report(message.value)
+        map_to_elastic_format(message.value)
